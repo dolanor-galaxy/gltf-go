@@ -19,7 +19,7 @@ import (
 // vertexColors should be true if the Model you pass in has vertex colors set AND you want the glTF model to use vertex
 // colors. if vertexColors is false, a bitmapped texture atlas will be created from the Materials used in the Model,
 // and the UV coordinates for each vertex will be set to the appropriate pixel on the texture atlas.
-var vertexColors = true
+var vertexColors = false
 
 // if true, a self-contained embedded .gltf file will be generated instead of a self-contained binary .glb.
 var embeddedGltf = false
@@ -27,7 +27,7 @@ var embeddedGltf = false
 func main() {
 	// set up the single material we'll use.
 	plain := Material{
-		AmbientColor: [3]float32{1.0, 0.0, 0.0},
+		DiffuseColor: [3]float32{1.0, 0.0, 0.0},
 		Opacity:      1.0,
 	}
 
