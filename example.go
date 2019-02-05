@@ -16,11 +16,12 @@ func main() {
 	flag.Parse()
 
 	// set up the single material we'll use.
-	plain := Material{
+	plainMaterial := Material{
 		DiffuseColor: [3]float32{1.0, 0.0, 0.0},
 		Opacity:      1.0,
 	}
 
+	// set up a vertex color in case vertex colors are chosen.
 	redColor := Vector4{
 		R: 1.0,
 		G: 0.0,
@@ -79,12 +80,13 @@ func main() {
 						TriangleIndices: [3]int32{0, 1, 2},
 					},
 				},
-				Material: plain,
+				Material: plainMaterial,
 			},
 		},
 	}
 
-	model, atlas := optimizeModel(meshes, *vertexColors)
+	// if vertexColors is true, textureAtlas will just be an emtpy bytes.Buffer.
+	model, textureAtlas := optimizeModel(meshes, *vertexColors)
 
-	writeGltf(model, atlas, "sample", *embeddedGltf, *vertexColors)
+	writeGltf(model, textureAtlas, "sample", *embeddedGltf, *vertexColors)
 }
